@@ -1,16 +1,15 @@
-import { Outlet } from 'react-router';
+import { Outlet } from 'react-router'
 
-import Footer from './componetns/layout/Footer'
-import Header from './componetns/layout/Header/Header'
+import Layout from 'components/layout/Layout'
 
 import './App.scss'
 
 function App() {
   return (
     <>
-      <Header />
-      <Outlet />
-      <Footer />
+      <Layout>
+        <Outlet />
+      </Layout>
     </>
   )
 }

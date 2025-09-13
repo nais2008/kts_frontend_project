@@ -2,20 +2,22 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react-swc'
 import path from 'path';
 
-import tsconfig from './tsconfig.json';
+import tsconfig from './tsconfig.app.json';
 
-const SRC_PATH = path.resolve(__dirname, 'src');
+const SRC_PATH = path.resolve(__dirname, "src");
 
-const parseTsConfigPaths = (paths: Record<string, string[]>): Record<string, string> => {
-  const webpackConfigAliases: Record<string, string> = {};
+const parseTsConfigPaths = (
+  paths: Record<string, string[]>
+): Record<string, string> => {
+  const aliases: Record<string, string> = {};
 
-  Object.entries(paths).forEach(([alias, paths]) => {
-    const aliasPath = paths[0].replace(/[^a-zA-Z]/g, '');
-
-    webpackConfigAliases[alias] = path.join(SRC_PATH, aliasPath);
+  Object.entries(paths).forEach(([key, value]) => {
+    const cleanKey = key.replace("/*", "");
+    const cleanValue = value[0].replace("/*", "");
+    aliases[cleanKey] = path.join(SRC_PATH, cleanValue);
   });
 
-  return webpackConfigAliases;
+  return aliases;
 };
 
 // https://vite.dev/config/

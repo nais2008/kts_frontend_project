@@ -1,0 +1,21 @@
+@use "styles/variables";
+
+.header{
+  padding-block: 16px;
+  border-bottom: 2px solid rgba(217, 217, 217, 1);
+
+  .headerContainer{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__avatar{
+    border-radius: 50%;
+    transition: box-shadow .2s;
+
+      &:hover{
+        box-shadow: 1px 4px 10px #888;
+      }
+  }
+}
