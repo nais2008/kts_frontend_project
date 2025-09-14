@@ -3,7 +3,7 @@ import { Link } from 'react-router'
 import React from 'react'
 import Heading from 'components/ui/Heading'
 
-import styles from "./Logo.module.scss"
+import styles from './Logo.module.scss'
 import { routes } from 'config/routes'
 
 interface LogoProps {
@@ -15,7 +15,7 @@ const Logo: React.FC<LogoProps> = ({
 }: LogoProps) => {
   return (
     <Link to={routes.main.create()} className={styles.logo}>
-      <img src="/github.svg" alt="github icon" />
+      <img src='/github.svg' alt='github icon' />
       {
         isAddText &&
         <Heading

@@ -3,13 +3,16 @@ import { Outlet } from 'react-router'
 import Layout from 'components/layout/Layout'
 
 import './App.scss'
+import { TokenProvider } from 'providers/TokenProvider'
 
 function App() {
   return (
     <>
-      <Layout>
-        <Outlet />
-      </Layout>
+      <TokenProvider>
+        <Layout>
+          <Outlet />
+        </Layout>
+      </TokenProvider>
     </>
   )
 }

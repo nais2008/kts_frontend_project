@@ -1,0 +1,123 @@
+@use "styles/variables";
+
+main:has(.readme__container){
+  background-color: #fff;
+}
+
+.readme__container{
+  background-color: #fff;
+  margin-top: 20px;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.repo__header{
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.repo__titleLink{
+  display: flex;
+  align-items: center;
+  font-size: 40px;
+  gap: 16px;
+}
+
+.repoAvatar{
+  width: 40px;
+  height: 40px;
+  border-radius: variables.$borderRadius;
+}
+
+.readme {
+  border: 1px solid rgba(217, 217, 217, 1);
+  border-radius: 6px;
+  padding: 16px;
+  margin-bottom: 24px;
+}
+
+.repoTitle {
+  width: 100%;
+}
+
+.homepage{
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 20px;
+  color: #0366d6;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.tag {
+  background-color: #f1f8ff;
+  color: #0366d6;
+  padding: 4px 16px;
+  border-radius: 2em;
+}
+
+.counts {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  color: variables.$secondoryColor;
+
+  *{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+}
+
+.flexContainer {
+  display: flex;
+  gap: 32px;
+}
+
+.contributors {
+  flex: 1;
+}
+
+.contributor {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+}
+
+.languages {
+  flex: 1;
+}
+
+.languageItem {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+}
+
+.languageDot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
+
+.percentage {
+  color: #586069;
+}

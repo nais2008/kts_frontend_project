@@ -1,6 +1,6 @@
-import React from 'react';
+import React from 'react'
 
-import styles from "./Button.module.scss"
+import styles from './Button.module.scss'
 
 export type ButtonProps = {
   children: React.ReactNode
@@ -16,6 +16,6 @@ const Button: React.FC<ButtonProps> = ({
       {children}
     </button>
   )
-};
+}
 
-export default Button;
+export default Button

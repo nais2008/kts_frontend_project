@@ -1,0 +1,35 @@
+@use "styles/variables";
+
+.rep_content{
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  padding-top: 40px;
+}
+.repositories__container{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 347px);
+  justify-content: space-between;
+  gap: 80px 10px;
+}
+.repositories__captionSlot{
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.repositories__pagination{
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 10px;
+}
+
+@media screen and (width <= variables.$breakpoint-xl) {
+  .repositories__container{
+    padding-inline: 20px;
+    justify-content: center;
+    grid-template-columns: repeat(auto-fit, minmax(347px, 1fr));
+    gap: 20px;
+    width: 100%;
+  }
+}

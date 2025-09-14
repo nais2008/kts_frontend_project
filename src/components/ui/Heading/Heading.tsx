@@ -1,6 +1,6 @@
-import React from "react";
+import React from 'react'
 
-import styles from "./Heading.module.scss";
+import styles from './Heading.module.scss'
 
 export type HeadingProps = {
     className?: string
@@ -22,31 +22,31 @@ const Heading: React.FC<HeadingProps> = ({
   maxLines,
   ...props
 }: HeadingProps) => {
-  const Component = tag;
+  const Component = tag
 
-  const classList: string[] = [styles.root];
+  const classList: string[] = [styles.root]
 
   if (className)
-    classList.push(className);
+    classList.push(className)
 
   if (view && styles[`view_${view}`])
-    classList.push(styles[`view_${view}`]);
+    classList.push(styles[`view_${view}`])
 
   if (weight && styles[`weight_${weight}`])
-    classList.push(styles[`weight_${weight}`]);
+    classList.push(styles[`weight_${weight}`])
 
   if (color && styles[`color_${color}`])
-    classList.push(styles[`color_${color}`]);
+    classList.push(styles[`color_${color}`])
 
   if (maxLines)
-    classList.push(styles.ellipsis);
+    classList.push(styles.ellipsis)
 
   const style = maxLines
     ? ({
         '--max-lines': maxLines,
         WebkitLineClamp: maxLines,
       } as React.CSSProperties)
-    : {};
+    : {}
 
   return (
     <Component
@@ -56,7 +56,7 @@ const Heading: React.FC<HeadingProps> = ({
     >
       {children}
     </Component>
-  );
-};
+  )
+}
 
-export default Heading;
+export default Heading

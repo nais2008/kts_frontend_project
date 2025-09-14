@@ -1,9 +1,9 @@
-import type { RouteObject } from "react-router"
+import type { RouteObject } from 'react-router'
 
-import App from "../App"
-import IndexPage from "pages/IndexPage"
-import RepositoriesPage from "pages/RepositoriesPage"
-import RepositoryPage from "pages/RepositoryPage"
+import App from '../App'
+import IndexPage from 'pages/IndexPage'
+import RepositoriesPage from 'pages/RepositoriesPage'
+import RepositoryPage from 'pages/RepositoryPage'
 
 
 export const routes = {
@@ -16,8 +16,8 @@ export const routes = {
     create: () => '/repositories',
   },
   repository: {
-    mask: '/repositories/:id',
-    create: (id: string) => `/repositories/${id}`
+    mask: '/repositories/:name',
+    create: (name: string) => `/repositories/${name}`
   }
 }
 
@@ -40,4 +40,4 @@ export const routesConfig: RouteObject[] = [
       }
     ]
   },
-];
+]

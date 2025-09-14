@@ -1,0 +1,22 @@
+@use "styles/animations";
+@use "styles/variables";
+
+main:has(.loader){
+  display: flex;
+  place-content: center;
+}
+
+.loader {
+  margin-top: 40px;
+  display: block;
+  border-radius: 50%;
+
+  width: 100px;
+  height: 100px;
+  border-top: 20px solid variables.$accentColor;
+  border-left: 20px solid variables.$accentColor;
+  border-bottom: 20px solid variables.$accentColor;
+  border-right: 20px solid transparent;
+
+  animation: rotate 1s linear infinite;
+}

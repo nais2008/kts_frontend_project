@@ -2,7 +2,7 @@ import React from 'react'
 
 import Heading from 'components/ui/Heading'
 
-import styles from "./Card.module.scss"
+import styles from './Card.module.scss'
 
 export type CardProps = {
   className?: string
