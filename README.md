@@ -24,6 +24,8 @@ npm install
 touch .env
 ```
 
+#### Создать токен [здесь (тык)](https://github.com/settings/tokens)
+
 ### Заполняем
 
 ```env
