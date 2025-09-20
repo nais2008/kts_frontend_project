@@ -1,19 +1,15 @@
-import { Outlet } from 'react-router'
+import { TokenProvider } from "providers/TokenProvider"
+import { Outlet } from "react-router"
 
-import Layout from 'components/layout/Layout'
-
-import './App.scss'
-import { TokenProvider } from 'providers/TokenProvider'
+import Layout from "components/layout/Layout"
 
 function App() {
   return (
-    <>
-      <TokenProvider>
-        <Layout>
-          <Outlet />
-        </Layout>
-      </TokenProvider>
-    </>
+    <TokenProvider>
+      <Layout>
+        <Outlet />
+      </Layout>
+    </TokenProvider>
   )
 }
 

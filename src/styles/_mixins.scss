@@ -1,0 +1,11 @@
+@use "./variables";
+
+@mixin container($marginBlock: 0) {
+  max-width: 1240px;
+  margin: $marginBlock auto;
+  @content;
+
+  @media screen and (width < variables.$breakpoint-xl) {
+    padding-inline: 20px;
+  }
+}

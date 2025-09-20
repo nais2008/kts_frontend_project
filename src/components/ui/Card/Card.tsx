@@ -1,8 +1,10 @@
-import React from 'react'
+import React from "react"
 
-import Heading from 'components/ui/Heading'
+import cn from "classnames"
 
-import styles from './Card.module.scss'
+import Heading from "components/ui/Heading"
+
+import styles from "./Card.module.scss"
 
 export type CardProps = {
   className?: string
@@ -23,55 +25,53 @@ const Card: React.FC<CardProps> = ({
   subtitle,
   contentSlot,
   onClick,
-  actionSlot
+  actionSlot,
 }) => {
   return (
-    <div className={`${styles.card} ${className}`} onClick={onClick}>
-      <img src={image} alt={styles.card_image} className={styles.card__image}/>
+    <div className={cn(styles.card, className)} onClick={onClick}>
+      <img src={image} alt={styles.card_image} className={styles.card__image} />
       <div className={styles.card__content}>
         <div className={styles.card__text}>
-          {
-            captionSlot &&
+          {captionSlot && (
             <Heading
               className={styles.card__captionSlot}
-              view='p-14' color='secondary'
-              weight='medium'
+              view="p-14"
+              color="secondary"
+              weight="medium"
             >
-                {captionSlot}
+              {captionSlot}
             </Heading>
-          }
+          )}
           <Heading
             className={styles.card__title}
-            view='p-20'
-            weight='medium'
+            view="p-20"
+            weight="medium"
             maxLines={2}
           >
             {title}
           </Heading>
           <Heading
             className={styles.card__subtitle}
-            view='p-16'
-            color='secondary'
+            view="p-16"
+            color="secondary"
             maxLines={3}
           >
             {subtitle}
           </Heading>
         </div>
         <div className={styles.card__footer}>
-          {
-            contentSlot &&
+          {contentSlot && (
             <Heading
               className={styles.card__contentSlot}
-              view='p-18'
-              weight='bold'
+              view="p-18"
+              weight="bold"
             >
               {contentSlot}
             </Heading>
-          }
-          {
-            actionSlot &&
+          )}
+          {actionSlot && (
             <div className={styles.card__actionSlot}>{actionSlot}</div>
-          }
+          )}
         </div>
       </div>
     </div>

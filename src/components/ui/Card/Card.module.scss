@@ -1,7 +1,6 @@
 @use "styles/variables";
 
-.card{
-  width: 347px;
+.card {
   display: flex;
   flex-direction: column;
   gap: 24px;
@@ -10,60 +9,52 @@
   padding-bottom: 16px;
   border-radius: variables.$borderRadius;
   overflow: hidden;
-  transition: box-shadow .2s;
+  transition: box-shadow 0.2s;
+  cursor: pointer;
 
-  @media (hover:hover) {
-    &:hover{
-      box-shadow: 0 4px 10px rgba(0, 0, 0, .25);
+  @media (hover: hover) {
+    &:hover {
+      box-shadow: variables.$shadow;
     }
   }
   @media (hover: none) {
-    &:active{
-      box-shadow: 0 4px 10px rgba(0, 0, 0, .25);
+    &:active {
+      box-shadow: variables.$shadow;
     }
   }
-  
-  .card__image{
+
+  &__image {
     width: 100%;
     height: 347px;
     object-fit: cover;
-    background: rgb(217, 217, 217);
+    background: variables.$grey;
   }
-  .card__content{
+  &__content {
     display: flex;
     flex-direction: column;
     gap: 20px;
     padding-inline: 12px;
-
-    .card__text{
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-
-      .card__caption-slot{
-        line-height: 18px;
-      }
-      .card__title{
-        line-height: 24px;
-      }
-      .card__subtitle{
-        line-height: 20px;
-      }
-    }
-    .card__footer{
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-
-      .card__contentSlot{
-        line-height: 22px;
-      }
-    }
   }
-}
-
-@media screen and (width <= variables.$breakpoint-xl) {
-  .card{
-    width: 100%;
+  &__footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  &__contentSlot {
+    line-height: 22px;
+  }
+  &__text {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  &__captionSlot {
+    line-height: 18px;
+  }
+  &__title {
+    line-height: 24px;
+  }
+  &__subtitle {
+    line-height: 20px;
   }
 }

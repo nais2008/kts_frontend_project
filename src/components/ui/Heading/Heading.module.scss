@@ -1,53 +1,53 @@
 @use "styles/variables";
 
 .view_title {
-    font-size: 44px;
-    font-weight: bold;
-    line-height: 48px;
-    width: 300px;
+  font-size: 44px;
+  font-weight: bold;
+  line-height: 48px;
+  width: 300px;
 }
-.view_button{
+.view_button {
   font-size: 18px;
   font-weight: 400;
 }
-.view_p-24{
+.view_p-24 {
   font-size: 24px;
 }
-.view_p-20{
+.view_p-20 {
   font-size: 20px;
 }
-.view_p-18{
+.view_p-18 {
   font-size: 18px;
 }
-.view_p-16{
+.view_p-16 {
   font-size: 16px;
 }
-.view_p-14{
+.view_p-14 {
   font-size: 14px;
 }
 
 .weight_medium {
-    font-weight: 500;
+  font-weight: 500;
 }
 
 .weight_bold {
-    font-weight: 700;
+  font-weight: 700;
 }
 
 .color_primary {
-    color: variables.$primeryColor;
+  color: variables.$primeryColor;
 }
 
 .color_secondary {
-    color: variables.$secondoryColor;
+  color: variables.$secondoryColor;
 }
 
 .color_accent {
-    color: variables.$accentColor;
+  color: variables.$accentColor;
 }
 
 .ellipsis {
-    overflow: hidden;
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
 }

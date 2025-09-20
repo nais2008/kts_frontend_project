@@ -1,10 +1,12 @@
-import { marked } from 'marked'
-import type { IGitHubReadmeFile } from 'shared/interfaces/readme.interface'
+import { marked } from "marked"
+import type { IGitHubReadmeFile } from "shared/interfaces/readme.interface"
 
-export async function parseReadmeToHtml(file: IGitHubReadmeFile): Promise<string> {
-  const binary = atob(file.content.replace(/\n/g, ''))
+export async function parseReadmeToHtml(
+  file: IGitHubReadmeFile
+): Promise<string> {
+  const binary = atob(file.content.replace(/\n/g, ""))
   const bytes = Uint8Array.from(binary, (c) => c.charCodeAt(0))
-  const decoder = new TextDecoder('utf-8')
+  const decoder = new TextDecoder("utf-8")
   const decoded = decoder.decode(bytes)
 
   const html = await marked.parse(decoded, { async: true })

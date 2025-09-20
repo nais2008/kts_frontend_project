@@ -1,9 +1,13 @@
-.footer{
-  padding: 20px;
+@use "styles/mixins";
 
-  &__container{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+.footer {
+  padding-block: 20px;
+
+  &__container {
+    @include mixins.container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
   }
 }

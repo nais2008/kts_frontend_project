@@ -1,4 +1,4 @@
-import { createContext } from 'react'
+import { createContext } from "react"
 
 type TokenContextType = {
   token: string
@@ -6,6 +6,6 @@ type TokenContextType = {
 }
 
 export const TokenContext = createContext<TokenContextType>({
-  token: '',
+  token: "",
   setToken: () => {},
 })

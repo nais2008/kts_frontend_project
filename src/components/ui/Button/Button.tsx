@@ -1,6 +1,8 @@
-import React from 'react'
+import React from "react"
 
-import styles from './Button.module.scss'
+import cn from "classnames"
+
+import styles from "./Button.module.scss"
 
 export type ButtonProps = {
   children: React.ReactNode
@@ -12,7 +14,7 @@ const Button: React.FC<ButtonProps> = ({
   ...props
 }: ButtonProps) => {
   return (
-    <button className={ `${styles.btn} ${className}` } { ...props }>
+    <button className={cn(styles.btn, className)} {...props}>
       {children}
     </button>
   )

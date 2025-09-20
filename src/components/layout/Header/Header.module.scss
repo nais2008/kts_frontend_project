@@ -1,27 +1,26 @@
 @use "styles/variables";
+@use "styles/mixins";
 
-.header{
+.header {
   padding-block: 16px;
-  border-bottom: 2px solid rgba(217, 217, 217, 1);
+  border-bottom: 2px solid variables.$grey;
 
-  .headerContainer{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+  &__container {
+    @include mixins.container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
   }
 
-  &__avatar{
+  &__avatar {
     border-radius: 50%;
-    transition: box-shadow .2s;
+    transition: box-shadow 0.2s linear;
 
-      &:hover{
-        box-shadow: 1px 4px 10px #888;
+    @media (hover: hover) {
+      &:hover {
+        box-shadow: variables.$shadow;
       }
-  }
-}
-
-@media screen and (width <= variables.$breakpoint-xl){
-  .header{
-    padding-inline: 20px;
+    }
   }
 }

@@ -1,8 +1,6 @@
 @use "styles/variables";
 
-$baclDisabled: rgba(217, 217, 217, 1);
-
-.btn{
+.btn {
   background: variables.$accentColor;
   display: flex;
   align-items: center;
@@ -14,18 +12,18 @@ $baclDisabled: rgba(217, 217, 217, 1);
   border: none;
   outline: none;
   cursor: pointer;
-  transition: background .2s;
+  transition: background 0.2s;
   border-radius: variables.$borderRadius;
 
   @media (hover: hover) {
-    &:not(&:disabled):hover{
+    &:not(&:disabled):hover {
       background: variables.$accentColorLight;
     }
   }
-  &:not(&:disabled):active{
+  &:not(&:disabled):active {
     background-color: variables.$accentColorDark;
   }
-  &:disabled{
-    background: $baclDisabled;
+  &:disabled {
+    background: variables.$baclDisabled;
   }
 }

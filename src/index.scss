@@ -15,14 +15,14 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-a{
+a {
   position: relative;
   text-decoration: none;
   color: variables.$primeryColor;
 }
 
-a:not(.btn, :has(img, svg)){
-  &::after{
+a:not(.btn, :has(img, svg)) {
+  &::after {
     content: "";
     display: block;
     height: 2px;
@@ -33,10 +33,10 @@ a:not(.btn, :has(img, svg)){
     bottom: 0;
     width: 0;
     transition:
-      width .2s cubic-bezier(0.215, 0.61, 0.355, 1),
-      left  .2s cubic-bezier(0.215, 0.61, 0.355, 1);
+      width 0.2s cubic-bezier(0.215, 0.61, 0.355, 1),
+      left 0.2s cubic-bezier(0.215, 0.61, 0.355, 1);
   }
-  &:hover::after{
+  &:hover::after {
     left: 0;
     width: 100%;
   }
@@ -47,13 +47,23 @@ body {
   min-height: 100vh;
 }
 
-.container{
+.container {
   max-width: 1240px;
   margin: 0 auto;
 }
 
-*{
+* {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+main {
+  flex: 1 1 auto;
 }

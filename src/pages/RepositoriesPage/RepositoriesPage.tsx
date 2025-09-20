@@ -1,24 +1,25 @@
-import React from 'react'
-import axios from 'axios'
-import { useNavigate } from 'react-router'
-import { ChevronLeft, ChevronRight, Star } from 'lucide-react'
+import React from "react"
 
-import Card from 'components/ui/Card'
-import Button from 'components/ui/Button'
-
-import { formatDate } from 'utils/formatDate'
-import { getVisiblePages } from 'utils/getVisiblePages'
+import axios from "axios"
+import { ROUTES } from "config/routes"
+import { useToken } from "hooks/useToken"
+import { ChevronLeft, ChevronRight, Star } from "lucide-react"
+import { useNavigate } from "react-router"
 import {
-  type IRepository,
   type IGitHubRepo,
+  type IRepository,
   mapRepo,
-} from 'shared/interfaces/repository.interface'
-import { routes } from 'config/routes'
-import { useToken } from 'hooks/useToken'
+} from "shared/interfaces/repository.interface"
 
-import styles from './RepositoriesPage.module.scss'
-import Search from 'components/ui/Search'
-import Loader from 'components/ui/Loader'
+import Button from "components/ui/Button"
+import Card from "components/ui/Card"
+import Loader from "components/ui/Loader"
+import Search from "components/ui/Search"
+
+import { formatDate } from "utils/formatDate"
+import { generatePaginationItems } from "utils/generatePaginationItems"
+
+import styles from "./RepositoriesPage.module.scss"
 
 const perPage = 9
 
@@ -40,20 +41,18 @@ const RepositoriesPage: React.FC = () => {
           {
             params: { per_page: perPage, page },
             headers: {
-              Authorization: `token ${token}`
-            }
-          },
+              Authorization: `token ${token}`,
+            },
+          }
         )
-
-
 
         setRepositories(response.data.map(mapRepo))
 
-        const linkHeader = response.headers.link || ''
+        const linkHeader = response.headers.link || ""
         const match = linkHeader.match(/&page=(\d+)>; rel="last"/)
         setTotalPages(match ? parseInt(match[1], 10) : page)
       } catch (err) {
-        setError('Не удалось загрузить репозитории')
+        setError("Не удалось загрузить репозитории")
         console.error(err)
       } finally {
         setLoading(false)
@@ -63,49 +62,45 @@ const RepositoriesPage: React.FC = () => {
     fetchData()
   }, [page, token])
 
-  if (loading)
-    return <Loader />
+  if (loading) return <Loader />
 
-  if (error)
-    return <div className={styles.error}>{error}</div>
+  if (error) return <div className={styles.error}>{error}</div>
 
   return (
-    <div className={`container ${styles.rep_content}`}>
+    <div className={styles.repositories__container}>
       <Search />
-      <div className={styles.repositories__container}>
+      <div className={styles.repositories}>
         {repositories.map((rep) => (
           <Card
             key={rep.id}
-            image={rep.avatar || 'https://avatar.vercel.sh/rauchg?size=347'}
+            image={rep.avatar || "https://avatar.vercel.sh/rauchg?size=347"}
             captionSlot={
-              <span className={styles.repositories__captionSlot}>
-                <Star color='#ff9432' size={16}/>
-                {rep.stars} {formatDate(rep.lastUpdate)}
+              <span className={styles.repository__captionSlot}>
+                <Star color="#ff9432" size={16} />
+                {rep.stars} Updated {formatDate(rep.lastUpdate)}
               </span>
             }
             title={rep.name}
-            subtitle={rep.description || 'Нет описания'}
-            onClick={() =>
-              navigate(routes.repository.create(rep.name))
-            }
+            subtitle={rep.description || "Нет описания"}
+            onClick={() => navigate(ROUTES.repository.create(rep.name))}
+            className={styles.repository}
           />
         ))}
       </div>
       <div className={styles.repositories__pagination}>
-        <Button
-          disabled={page === 1}
-          onClick={() => setPage(page - 1)}
-        >
-          <ChevronLeft size={21}/>
+        <Button disabled={page === 1} onClick={() => setPage(page - 1)}>
+          <ChevronLeft size={21} />
         </Button>
 
-        {getVisiblePages(page, totalPages).map((p, i) =>
-          p === '...' ? (
-            <span key={i} className={styles.ellipsis}>…</span>
+        {generatePaginationItems(page, totalPages).map((p, i) =>
+          p === "..." ? (
+            <span key={i} className={styles.ellipsis}>
+              …
+            </span>
           ) : (
             <Button
               key={i}
-              className={p === page ? styles.activePage : ''}
+              className={p === page ? styles.activePage : ""}
               onClick={() => setPage(Number(p))}
             >
               {p}
@@ -117,7 +112,7 @@ const RepositoriesPage: React.FC = () => {
           disabled={page === totalPages}
           onClick={() => setPage(page + 1)}
         >
-          <ChevronRight size={21}/>
+          <ChevronRight size={21} />
         </Button>
       </div>
     </div>

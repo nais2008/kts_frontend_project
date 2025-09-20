@@ -1,11 +1,11 @@
-import { TokenContext } from 'contexts/TokenContext'
+import React, { useState } from "react"
 
-import React, { useState } from 'react'
+import { TokenContext } from "contexts/TokenContext"
 
-export const TokenProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [token, setToken] = useState(
-    import.meta.env.VITE_GITHUB_TOKEN || ''
-  )
+export const TokenProvider: React.FC<{ children: React.ReactNode }> = ({
+  children,
+}) => {
+  const [token, setToken] = useState(import.meta.env.VITE_GITHUB_TOKEN || "")
 
   return (
     <TokenContext.Provider value={{ token, setToken }}>
@@ -15,4 +15,3 @@ export const TokenProvider: React.FC<{ children: React.ReactNode }> = ({ childre
 }
 
 export { TokenContext }
-

@@ -1,7 +1,7 @@
 @use "styles/animations";
 @use "styles/variables";
 
-main:has(.loader){
+main:has(.loader) {
   display: flex;
   place-content: center;
 }

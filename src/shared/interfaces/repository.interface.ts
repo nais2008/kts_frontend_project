@@ -32,7 +32,7 @@ export interface IGitHubRepo {
 export const mapRepo = (repo: IGitHubRepo): IRepository => ({
   id: repo.id,
   name: repo.name,
-  description: repo.description || ' ',
+  description: repo.description || " ",
   stars: repo.stargazers_count,
   lastUpdate: repo.updated_at,
   avatar: repo.owner.avatar_url || null,

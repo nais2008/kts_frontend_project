@@ -1,16 +1,16 @@
-import type { PropsWithChildren } from 'react'
+import type { PropsWithChildren } from "react"
 
-import Header from './Header'
-import Footer from './Footer'
+import Footer from "./Footer"
+import Header from "./Header"
 
-export default function Layout({ children }: PropsWithChildren<unknown>) {
+function Layout({ children }: PropsWithChildren) {
   return (
     <>
       <Header />
-      <main>
-        {children}
-      </main>
+      <main>{children}</main>
       <Footer />
     </>
   )
 }
+
+export default Layout

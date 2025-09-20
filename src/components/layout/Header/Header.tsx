@@ -1,15 +1,15 @@
-import Logo from 'components/ui/Logo'
+import Logo from "components/ui/Logo"
 
-import styles from './Header.module.scss'
+import styles from "./Header.module.scss"
 
 const Header = () => {
   return (
     <header className={styles.header}>
-      <div className={`container ${styles.headerContainer}`}>
-        <Logo isAddText={true}/>
+      <div className={styles.header__container}>
+        <Logo withTitle />
         <img
-          src='https://picsum.photos/32'
-          alt='avatar'
+          src="https://picsum.photos/32"
+          alt="avatar"
           className={styles.header__avatar}
         />
       </div>
@@ -18,4 +18,3 @@ const Header = () => {
 }
 
 export default Header
-

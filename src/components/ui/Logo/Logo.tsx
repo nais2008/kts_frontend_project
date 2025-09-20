@@ -1,33 +1,27 @@
-import { Link } from 'react-router'
+import React from "react"
 
-import React from 'react'
-import Heading from 'components/ui/Heading'
+import { ROUTES } from "config/routes"
+import { Link } from "react-router"
 
-import styles from './Logo.module.scss'
-import { routes } from 'config/routes'
+import Heading from "components/ui/Heading"
+
+import styles from "./Logo.module.scss"
 
 interface LogoProps {
-  isAddText?: boolean
+  withTitle?: boolean
 }
 
-const Logo: React.FC<LogoProps> = ({
-  isAddText = false,
-}: LogoProps) => {
+const Logo: React.FC<LogoProps> = ({ withTitle = false }: LogoProps) => {
   return (
-    <Link to={routes.main.create()} className={styles.logo}>
-      <img src='/github.svg' alt='github icon' />
-      {
-        isAddText &&
-        <Heading
-          view='p-24'
-          weight='medium'
-        >
+    <Link to={ROUTES.main.create()} className={styles.logo}>
+      <img src="/github.svg" alt="github icon" />
+      {withTitle && (
+        <Heading view="p-24" weight="medium">
           GitHub Client
         </Heading>
-      }
+      )}
     </Link>
   )
 }
 
 export default Logo
-

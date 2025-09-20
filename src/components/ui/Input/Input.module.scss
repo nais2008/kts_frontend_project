@@ -1,37 +1,37 @@
 @use "styles/variables";
 
-.testClass{
-  display: flex;
-  position: relative;
-}
-
-.input{
-  padding: 15px 12px;
-  padding-right: 40px;
-  width: 100%;
-  font-size: 16px;
-  border-radius: 0;
-  border: 1px solid #fff;
-  outline: none;
-  color: #000;
-  background-color: #fff;
-  border-radius: variables.$borderRadius;
-
-  &::placeholder{
-    color: variables.$secondoryColor;
+.input {
+  &__wrapper {
+    display: flex;
+    position: relative;
   }
-  &:not(input:disabled):focus{
-    border: 1px solid variables.$accentColor;
-  }
-  &:disabled{
-    background-color: #fff;
-    cursor: not-allowed;
-  }
-}
+  &__field {
+    padding: 15px 12px;
+    padding-right: 40px;
+    width: 100%;
+    font-size: 16px;
+    border-radius: 0;
+    border: 1px solid variables.$backSecondColor;
+    outline: none;
+    color: variables.$primeryColor;
+    background-color: variables.$backSecondColor;
+    border-radius: variables.$borderRadius;
 
-.input__afterSlot{
-  position: absolute;
-  right: 12px;
-  top: 50%;
-  transform: translateY(-50%);
+    &::placeholder {
+      color: variables.$secondoryColor;
+    }
+    &:not(input:disabled):focus {
+      border: 1px solid variables.$accentColor;
+    }
+    &:disabled {
+      background-color: variables.$baclDisabled;
+      cursor: not-allowed;
+    }
+  }
+  &__afterSlot {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
 }
