@@ -1,60 +1,123 @@
+/* eslint-disable react-refresh/only-export-components */
 import React from "react"
 
 import { ROUTES } from "config/routes"
+import { useDebounce } from "hooks/useDebounce"
 import { useLocalStore } from "hooks/useLocalStore"
-import { Star } from "lucide-react"
+import { Heart, Star } from "lucide-react"
 import { observer } from "mobx-react-lite"
-import { useNavigate } from "react-router"
+import { useNavigate, useSearchParams } from "react-router"
 import { MetaValues } from "shared/types/meta.type"
 import GitHubStore from "store/GitHubStore"
 
+import Button from "components/ui/Button"
 import Card from "components/ui/Card"
+import Loader from "components/ui/Loader"
+import Pagination from "components/ui/Pagination"
 import Search from "components/ui/Search"
 
 import { formatDate } from "utils/formatDate"
 
 import styles from "./RepositoriesPage.module.scss"
-import { useDebounce } from "hooks/useDebounce"
 
-const RepositoriesPageBase: React.FC = () => {
+const RepositoriesPage = () => {
   const navigate = useNavigate()
   const gitHubStore = useLocalStore(() => new GitHubStore())
-  const [ search, setSearch ] = React.useState("ktsstudio")
+
+  const [searchParams, setSearchParams] = useSearchParams()
+  const searchQuery = searchParams.get("search") ?? "ktsstudio"
+  const page = Number(searchParams.get("page")) || 1
+  const perPage = 9
+
+  const [search, setSearch] = React.useState(searchQuery)
   const debouncedSearch = useDebounce(search, 500)
 
-  console.log("GitHubReposPage")
+  React.useEffect(() => {
+    setSearch(searchQuery)
+  }, [searchQuery])
 
   React.useEffect(() => {
-    gitHubStore.getOrganizationReposList({ orgName: debouncedSearch });
-  }, [debouncedSearch, gitHubStore]);
+    if (debouncedSearch !== searchQuery && debouncedSearch) {
+      setSearchParams({ search: debouncedSearch, page: "1" })
+    }
+  }, [debouncedSearch, searchQuery, setSearchParams])
+
+  React.useEffect(() => {
+    if (debouncedSearch) {
+      gitHubStore.getOrganizationReposList({
+        orgName: debouncedSearch,
+        page,
+        perPage,
+      })
+    }
+  }, [debouncedSearch, page, gitHubStore])
+
+  const handlePageChange = (newPage: number) => {
+    setSearchParams({ search: searchQuery, page: String(newPage) })
+  }
+
+  const handleFavoriteClick = (
+    e: React.MouseEvent<HTMLButtonElement>,
+    repo: (typeof gitHubStore.list)[number]
+  ) => {
+    e.stopPropagation()
+    gitHubStore.toggleFavorite(repo)
+  }
 
   return (
     <div className={styles.repositories__container}>
-      {gitHubStore.meta === MetaValues.LOADING && <p>Loading...</p>}
       <Search value={search} onChange={setSearch} />
+
+      <h2>Search Results</h2>
       <div className={styles.repositories}>
+        {gitHubStore.meta === MetaValues.LOADING &&
+          Array.from({ length: perPage }).map((_, i) => (
+            <Loader key={i} size="l" />
+          ))}
+
         {gitHubStore.list.map((rep) => (
           <Card
             key={rep.id}
             image={
-              rep.owner.avatarURL || "https://avatar.vercel.sh/rauchg?size=347"
+              rep.owner.avatarURL || "https://avatar.vercel.sh/rauchg?size=350"
             }
             captionSlot={
               <span className={styles.repository__captionSlot}>
                 <Star color="#ff9432" size={16} />
-                {rep.stars} Updated {formatDate(rep.lastUpdate)}
+                {rep.stargazersCount} Updated {formatDate(rep.lastUpdate)}
               </span>
             }
             title={rep.name}
             subtitle={rep.description}
-            onClick={() => navigate(ROUTES.repository.create(rep.name))}
+            onClick={() =>
+              navigate(ROUTES.repository.create(searchQuery, rep.name))
+            }
             className={styles.repository}
+            actionSlot={
+              <Button
+                className={styles.favoriteButton}
+                onClick={(e) => handleFavoriteClick(e, rep)}
+              >
+                <Heart
+                  size={20}
+                  color={gitHubStore.isFavorite(rep.id) ? "#ffc700" : "#ffffff"}
+                  fill={gitHubStore.isFavorite(rep.id) ? "#ffc700" : "none"}
+                />
+              </Button>
+            }
           />
         ))}
       </div>
+
+      {gitHubStore.meta !== MetaValues.ERROR && (
+        <Pagination
+          currentPage={page}
+          totalPages={30}
+          onChange={handlePageChange}
+        />
+      )}
     </div>
   )
 }
 
-const RepositoriesPage = observer(RepositoriesPageBase)
-export default RepositoriesPage
+export default observer(RepositoriesPage)

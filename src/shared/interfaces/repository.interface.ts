@@ -8,7 +8,6 @@ export interface IGitHubRepoModel {
   id: number
   name: string
   description: string
-  stars: number
   lastUpdate: Date
   stargazersCount: number
   watchersCount: number
@@ -35,7 +34,6 @@ export const normilizeRepo = (repo: IGitHubRepoAPI): IGitHubRepoModel => ({
   id: repo.id,
   name: repo.name,
   description: repo.description || "",
-  stars: repo.stargazers_count,
   lastUpdate: new Date(repo.updated_at),
   stargazersCount: repo.stargazers_count,
   watchersCount: repo.watchers_count,

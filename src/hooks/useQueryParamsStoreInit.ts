@@ -1,9 +1,12 @@
-import * as Router from "react-router"
+import React from "react"
 
-import rootStore from "store/RootSore"
+import * as Router from "react-router"
+import rootStore from "store/RootStore"
 
 export const useQueryParamsStoreInit = (): void => {
   const { search } = Router.useLocation()
 
-  rootStore.query.setSearch(search)
+  React.useEffect(() => {
+    rootStore.query.setSearch(search)
+  }, [search])
 }

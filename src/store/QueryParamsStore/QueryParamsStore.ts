@@ -15,7 +15,7 @@ class QueryParamsStore {
   }
 
   getParam(
-    key: string,
+    key: string
   ): undefined | string | qs.ParsedQs | (string | qs.ParsedQs)[] {
     return this._params[key]
   }
@@ -23,7 +23,7 @@ class QueryParamsStore {
   setSearch(search: string) {
     search = search.startsWith("?") ? search.slice(1) : search
 
-    if (this._search !== search){
+    if (this._search !== search) {
       this._search = search
       this._params = qs.parse(search)
     }

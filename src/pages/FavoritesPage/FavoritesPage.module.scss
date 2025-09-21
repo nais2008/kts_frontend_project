@@ -1,0 +1,29 @@
+@import "../RepositoriesPage/RepositoriesPage.module.scss";
+
+.favorites__container {
+  @extend .repositories__container;
+  h1 {
+    width: 100%;
+    margin-bottom: 24px;
+    font-size: 2rem;
+  }
+}
+
+.favorites__empty {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 60vh;
+  text-align: center;
+
+  h1 {
+    font-size: 1.5rem;
+    margin-top: 16px;
+  }
+
+  p {
+    margin-top: 8px;
+    max-width: 300px;
+  }
+}

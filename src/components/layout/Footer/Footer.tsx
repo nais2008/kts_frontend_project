@@ -12,7 +12,16 @@ const Footer = () => {
         <Heading view="p-16" weight="medium" color="secondary">
           © GitHubClient 2025 - {new Date().getFullYear()}
         </Heading>
-        <Link to={ROUTES.repositories.create()}>Go to Repo</Link>
+        <nav>
+          <ul>
+            <li>
+              <Link to={ROUTES.repositories.create()}>Go to Repo</Link>
+            </li>
+            <li>
+              <Link to={ROUTES.favorite.create()}>Go to Favorite</Link>
+            </li>
+          </ul>
+        </nav>
       </div>
     </footer>
   )

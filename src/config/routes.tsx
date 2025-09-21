@@ -1,3 +1,4 @@
+import FavoritesPage from "pages/FavoritesPage/FavoritesPage"
 import IndexPage from "pages/IndexPage"
 import RepositoriesPage from "pages/RepositoriesPage"
 import RepositoryPage from "pages/RepositoryPage"
@@ -15,8 +16,13 @@ export const ROUTES = {
     create: () => "/repositories",
   },
   repository: {
-    mask: "/repositories/:name",
-    create: (name: string) => `/repositories/${name}`,
+    mask: "/repositories/:orgName/:repoName",
+    create: (orgName: string, repoName: string) =>
+      `/repositories/${orgName}/${repoName}`,
+  },
+  favorite: {
+    mask: "/favorite",
+    create: () => "/favorite",
   },
 }
 
@@ -36,6 +42,10 @@ export const routesConfig: RouteObject[] = [
       {
         path: ROUTES.repository.mask,
         element: <RepositoryPage />,
+      },
+      {
+        path: ROUTES.favorite.mask,
+        element: <FavoritesPage />,
       },
     ],
   },

@@ -18,6 +18,16 @@
       }
     }
   }
+  &__2line {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    width: 100%;
+
+    & > * {
+      flex-basis: 49%;
+    }
+  }
   &__header {
     display: flex;
     gap: 20px;

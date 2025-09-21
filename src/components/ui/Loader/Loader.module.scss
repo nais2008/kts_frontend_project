@@ -1,22 +1,68 @@
 @use "styles/animations";
+@use "styles/mixins";
 @use "styles/variables";
 
-main:has(.loader) {
-  display: flex;
-  place-content: center;
-}
-
 .loader {
-  margin-top: 40px;
-  display: block;
-  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 0;
+  overflow: hidden;
+  position: relative;
+  border-radius: variables.$borderRadius;
+  background-color: variables.$backSecondColor;
+  padding-bottom: 20px;
 
-  width: 100px;
-  height: 100px;
-  border-top: 20px solid variables.$accentColor;
-  border-left: 20px solid variables.$accentColor;
-  border-bottom: 20px solid variables.$accentColor;
-  border-right: 20px solid transparent;
+  &_large {
+    @include mixins.container {
+      justify-content: center;
+      padding: 20px;
+      margin-top: 20px;
 
-  animation: rotate 1s linear infinite;
+      .loader__image {
+        width: 300px;
+        height: 300px;
+        border-radius: variables.$borderRadius;
+      }
+
+      @media screen and (width <= variables.$breakpoint-l) {
+        margin-top: 0;
+        border-radius: 0;
+      }
+    }
+  }
+  &__container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding-inline: 12px;
+  }
+  &__image {
+    width: 100%;
+    height: 350px;
+    background-color: variables.$grey;
+  }
+  &__title {
+    height: 20px;
+    width: 60%;
+    background-color: variables.$grey;
+  }
+  &__text {
+    height: 20px;
+    width: 100%;
+    background-color: variables.$grey;
+  }
+  &::before {
+    content: "";
+    position: absolute;
+    background-color: variables.$primeryColor;
+    rotate: 45deg;
+    top: 0;
+    left: 0;
+    width: 10px;
+    height: 200%;
+    filter: blur(20px);
+
+    animation: loading 1.5s linear infinite;
+  }
 }
