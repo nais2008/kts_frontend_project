@@ -27,7 +27,6 @@
       "data/*": ["data/*"],
       "components/*": ["components/*"],
       "config/*": ["config/*"],
-      "contexts/*": ["contexts/*"],
       "types/*": ["types/*"],
       "styles/*": ["styles/*"],
       "utils/*": ["utils/*"],

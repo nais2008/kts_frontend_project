@@ -1,14 +1,22 @@
-export interface IGitHubReadmeFile {
+export interface IGitHubReadmeFileAPI {
   name: string
   content: string
   encoding: "base64" | string
   html_url: string
-  download_url?: string
 }
 
-export interface IGitHubContributor {
-  login: string
-  avatar_url: string
-  html_url: string
-  contributions: number
+export interface IGitHubReadmeFileModel {
+  name: string
+  content: string
+  encoding: "base64" | string
+  htmlUrl: string
 }
+
+export const normilizeReadme = (
+  from: IGitHubReadmeFileAPI
+): IGitHubReadmeFileModel => ({
+  name: from.name,
+  content: from.content,
+  encoding: from.encoding,
+  htmlUrl: from.html_url,
+})

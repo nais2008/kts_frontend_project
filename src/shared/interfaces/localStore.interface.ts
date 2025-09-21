@@ -1,3 +1,3 @@
 export interface ILocalStore {
-  destroy: () => void
+  destroy(): void
 }

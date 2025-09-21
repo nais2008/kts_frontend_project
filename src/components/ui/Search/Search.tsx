@@ -5,14 +5,19 @@ import { Search as IconSearch } from "lucide-react"
 import Input from "../Input"
 import styles from "./Search.module.scss"
 
-const Search: React.FC = () => {
+interface SearchProps {
+  value: string
+  onChange: (value: string) => void
+}
+
+const Search: React.FC<SearchProps> = ({ value, onChange }) => {
   return (
     <div className={styles.search_contant}>
       <Input
         type="text"
         placeholder="Search..."
-        value=""
-        onChange={(e) => console.log(e.valueOf)}
+        value={value}
+        onChange={onChange}
         afterSlot={<IconSearch size={16} />}
       />
     </div>

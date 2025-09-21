@@ -1,44 +1,46 @@
-export interface IRepository {
+import {
+  type IGitHubOwnerAPI,
+  type IGitHubOwnerModel,
+  normilizeOwner,
+} from "./owner.interface"
+
+export interface IGitHubRepoModel {
   id: number
   name: string
   description: string
   stars: number
-  lastUpdate: string
-  avatar: string | null
+  lastUpdate: Date
   stargazersCount: number
   watchersCount: number
   forksCount: number
   topics: string[]
   homepage: string | null
+  owner: IGitHubOwnerModel
 }
 
-export interface IGitHubOwner {
-  avatar_url: string
-}
-
-export interface IGitHubRepo {
+export interface IGitHubRepoAPI {
   id: number
   name: string
-  description: string | null
+  description: string
   stargazers_count: number
   updated_at: string
-  owner: IGitHubOwner
+  owner: IGitHubOwnerAPI
   watchers_count: number
   forks_count: number
   topics: string[]
-  homepage: string | null
+  homepage: string
 }
 
-export const mapRepo = (repo: IGitHubRepo): IRepository => ({
+export const normilizeRepo = (repo: IGitHubRepoAPI): IGitHubRepoModel => ({
   id: repo.id,
   name: repo.name,
-  description: repo.description || " ",
+  description: repo.description || "",
   stars: repo.stargazers_count,
-  lastUpdate: repo.updated_at,
-  avatar: repo.owner.avatar_url || null,
+  lastUpdate: new Date(repo.updated_at),
   stargazersCount: repo.stargazers_count,
   watchersCount: repo.watchers_count,
   forksCount: repo.forks_count,
   topics: repo.topics,
   homepage: repo.homepage,
+  owner: normilizeOwner(repo.owner),
 })

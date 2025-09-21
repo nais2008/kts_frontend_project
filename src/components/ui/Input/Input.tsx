@@ -15,7 +15,7 @@ export type InputProps = Omit<
 
 const Input = React.forwardRef<HTMLInputElement, InputProps>(
   ({ className, value, onChange, afterSlot, ...props }, ref) => {
-    const handlerCheage = React.useCallback(
+    const handlerChange = React.useCallback(
       (event: React.ChangeEvent<HTMLInputElement>) => {
         onChange(event.target.value)
       },
@@ -27,7 +27,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
         <input
           ref={ref}
           {...props}
-          onChange={handlerCheage}
+          onChange={handlerChange}
           value={value}
           className={cn(styles.input__field, className)}
           type="text"
