@@ -3,6 +3,7 @@ import React from "react"
 import { ROUTES } from "config/routes"
 import { Heart, Star } from "lucide-react"
 import { useNavigate } from "react-router"
+
 import type { IGitHubRepoModel } from "shared/interfaces/repository.interface"
 
 import Button from "components/ui/Button"

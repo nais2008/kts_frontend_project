@@ -1,5 +1,4 @@
 import React from "react"
-
 import Heading from "components/ui/Heading"
 
 import { generateLanguageProcentage } from "utils/generateLanguageProcentage"

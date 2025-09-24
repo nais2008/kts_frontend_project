@@ -1,4 +1,4 @@
-import FavoritesPage from "pages/FavoritesPage/FavoritesPage"
+import FavoritesPage from "pages/FavoritesPage"
 import IndexPage from "pages/IndexPage"
 import RepositoriesPage from "pages/RepositoriesPage"
 import RepositoryPage from "pages/RepositoryPage"
