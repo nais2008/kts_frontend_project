@@ -25,6 +25,7 @@
     "paths": {
       "api/*": ["api/*"],
       "data/*": ["data/*"],
+      "constants/*": ["constants/*"],
       "components/*": ["components/*"],
       "config/*": ["config/*"],
       "types/*": ["types/*"],

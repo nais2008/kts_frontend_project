@@ -1,3 +1,4 @@
+import { ENDPOINTS } from "constants/endpoints"
 import { action, computed, makeObservable, observable, runInAction } from "mobx"
 import type { ILocalStore } from "shared/interfaces/localStore.interface"
 import {
@@ -14,6 +15,7 @@ import {
   type IGitHubRepoModel,
   normilizeRepo,
 } from "shared/interfaces/repository.interface"
+import { HTTPMethod } from "shared/types/httpMethod.type"
 import { MetaValues } from "shared/types/meta.type"
 import ApiStore from "store/ApiStore"
 
@@ -78,20 +80,20 @@ class RepoStore implements ILocalStore {
       const [repoRes, languagesRes, contributorsRes, readmeRes] =
         await Promise.all([
           this._apiStore.request<IGitHubRepoAPI>({
-            method: "GET",
-            endpoint: `/repos/${owner}/${repoName}`,
+            method: HTTPMethod.GET,
+            endpoint: ENDPOINTS.repository.info.create(owner, repoName),
           }),
           this._apiStore.request<Record<string, number>>({
-            method: "GET",
-            endpoint: `/repos/${owner}/${repoName}/languages`,
+            method: HTTPMethod.GET,
+            endpoint: ENDPOINTS.repository.languages.create(owner, repoName),
           }),
           this._apiStore.request<IGitHubOwnerAPI[]>({
-            method: "GET",
-            endpoint: `/repos/${owner}/${repoName}/contributors`,
+            method: HTTPMethod.GET,
+            endpoint: ENDPOINTS.repository.contributors.create(owner, repoName),
           }),
           this._apiStore.request<IGitHubReadmeFileAPI>({
-            method: "GET",
-            endpoint: `/repos/${owner}/${repoName}/readme`,
+            method: HTTPMethod.GET,
+            endpoint: ENDPOINTS.repository.readme.create(owner, repoName),
           }),
         ])
 

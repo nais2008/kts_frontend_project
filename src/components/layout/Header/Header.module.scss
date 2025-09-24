@@ -2,7 +2,7 @@
 @use "styles/mixins";
 
 .header {
-  padding-block: 16px;
+  padding-block: variables.$spacing-16;
   border-bottom: 2px solid variables.$grey;
 
   &__container {

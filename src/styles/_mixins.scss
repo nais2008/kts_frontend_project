@@ -6,6 +6,17 @@
   @content;
 
   @media screen and (width < variables.$breakpoint-xl) {
-    padding-inline: 20px;
+    padding-inline: variables.$spacing-20;
+  }
+}
+
+@mixin twoLines {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  width: 100%;
+
+  & > * {
+    flex-basis: 49%;
   }
 }

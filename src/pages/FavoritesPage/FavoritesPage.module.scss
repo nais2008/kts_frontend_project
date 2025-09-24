@@ -1,10 +1,12 @@
+@use "styles/variables";
+
 @import "../RepositoriesPage/RepositoriesPage.module.scss";
 
 .favorites__container {
   @extend .repositories__container;
   h1 {
     width: 100%;
-    margin-bottom: 24px;
+    margin-bottom: variables.$spacing-24;
     font-size: 2rem;
   }
 }
@@ -19,11 +21,11 @@
 
   h1 {
     font-size: 1.5rem;
-    margin-top: 16px;
+    margin-top: variables.$spacing-16;
   }
 
   p {
-    margin-top: 8px;
+    margin-top: variables.$spacing-8;
     max-width: 300px;
   }
 }

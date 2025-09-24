@@ -1,3 +1,4 @@
+import { ENDPOINTS } from "constants/endpoints"
 import {
   type IReactionDisposer,
   action,
@@ -93,7 +94,7 @@ class GitHubStore implements ILocalStore {
 
     const response = await this._apiStore.request<IGitHubRepoAPI[]>({
       method: HTTPMethod.GET,
-      endpoint: `/orgs/${orgName}/repos?per_page=${perPage}&page=${page}`,
+      endpoint: ENDPOINTS.repositories.create(orgName, perPage, page),
       data: {},
       headers: {},
     })

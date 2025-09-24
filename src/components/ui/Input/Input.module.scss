@@ -6,8 +6,8 @@
     position: relative;
   }
   &__field {
-    padding: 15px 12px;
-    padding-right: 40px;
+    padding: variables.$spacing-16 variables.$spacing-12;
+    padding-right: variables.$spacing-40;
     width: 100%;
     font-size: 16px;
     border-radius: 0;

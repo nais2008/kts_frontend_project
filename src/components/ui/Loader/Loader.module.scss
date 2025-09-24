@@ -11,13 +11,13 @@
   position: relative;
   border-radius: variables.$borderRadius;
   background-color: variables.$backSecondColor;
-  padding-bottom: 20px;
+  padding-bottom: variables.$spacing-20;
 
   &_large {
     @include mixins.container {
       justify-content: center;
-      padding: 20px;
-      margin-top: 20px;
+      padding: variables.$spacing-20;
+      margin-top: variables.$spacing-20;
 
       .loader__image {
         width: 300px;
@@ -35,7 +35,7 @@
     display: flex;
     flex-direction: column;
     gap: 20px;
-    padding-inline: 12px;
+    padding-inline: variables.$spacing-12;
   }
   &__image {
     width: 100%;

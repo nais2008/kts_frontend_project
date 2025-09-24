@@ -20,21 +20,8 @@
       display: flex;
       flex-direction: column;
       gap: 40px;
-      padding-top: 40px;
-    }
-  }
-  .repository {
-    &__captionSlot {
-      display: flex;
-      align-items: center;
-      gap: 5px;
+      padding-top: variables.$spacing-40;
     }
   }
 }
 
-.repositories__pagination {
-  display: flex;
-  justify-content: center;
-  align-items: flex-end;
-  gap: 10px;
-}

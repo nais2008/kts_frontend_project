@@ -1,18 +1,25 @@
 import React from "react"
 
-import classNames from "classnames"
+import cn from "classnames"
 
 import styles from "./Loader.module.scss"
 
+const LoaderSize = {
+  L: "l",
+  S: "s"
+}
+
+type LoaderSize = (typeof LoaderSize)[keyof typeof LoaderSize]
+
 export type LoaderProps = {
   className?: string
-  size: "s" | "l"
+  size: LoaderSize
 }
 
 const Loader: React.FC<LoaderProps> = ({ className, size }) => {
   return (
     <div
-      className={classNames(className, styles.loader, {
+      className={cn(className, styles.loader, {
         [styles.loader_small]: size === "s",
         [styles.loader_large]: size === "l",
       })}
