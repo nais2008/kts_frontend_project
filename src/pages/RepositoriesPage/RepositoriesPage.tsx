@@ -12,6 +12,7 @@ import GitHubStore from "store/GitHubStore"
 
 import Button from "components/ui/Button"
 import Card from "components/ui/Card"
+import Heading from "components/ui/Heading"
 import Loader from "components/ui/Loader"
 import Pagination from "components/ui/Pagination"
 import Search from "components/ui/Search"
@@ -34,15 +35,11 @@ const RepositoriesPage = () => {
 
   React.useEffect(() => {
     setSearch(searchQuery)
-  }, [searchQuery])
 
-  React.useEffect(() => {
     if (debouncedSearch !== searchQuery && debouncedSearch) {
       setSearchParams({ search: debouncedSearch, page: "1" })
     }
-  }, [debouncedSearch, searchQuery, setSearchParams])
 
-  React.useEffect(() => {
     if (debouncedSearch) {
       gitHubStore.getOrganizationReposList({
         orgName: debouncedSearch,
@@ -50,7 +47,7 @@ const RepositoriesPage = () => {
         perPage,
       })
     }
-  }, [debouncedSearch, page, gitHubStore])
+  }, [searchQuery, debouncedSearch, setSearchParams, gitHubStore, page])
 
   const handlePageChange = (newPage: number) => {
     setSearchParams({ search: searchQuery, page: String(newPage) })
@@ -69,6 +66,13 @@ const RepositoriesPage = () => {
       <Search value={search} onChange={setSearch} />
 
       <h2>Search Results</h2>
+
+      {gitHubStore.meta === MetaValues.ERROR && (
+        <Heading weight="medium" view="p-24">
+          Ничего не найдено 404
+        </Heading>
+      )}
+
       <div className={styles.repositories}>
         {gitHubStore.meta === MetaValues.LOADING &&
           Array.from({ length: perPage }).map((_, i) => (
@@ -82,10 +86,10 @@ const RepositoriesPage = () => {
               rep.owner.avatarURL || "https://avatar.vercel.sh/rauchg?size=350"
             }
             captionSlot={
-              <span className={styles.repository__captionSlot}>
+              <>
                 <Star color="#ff9432" size={16} />
                 {rep.stargazersCount} Updated {formatDate(rep.lastUpdate)}
-              </span>
+              </>
             }
             title={rep.name}
             subtitle={rep.description}
@@ -94,10 +98,7 @@ const RepositoriesPage = () => {
             }
             className={styles.repository}
             actionSlot={
-              <Button
-                className={styles.favoriteButton}
-                onClick={(e) => handleFavoriteClick(e, rep)}
-              >
+              <Button onClick={(e) => handleFavoriteClick(e, rep)}>
                 <Heart
                   size={20}
                   color={gitHubStore.isFavorite(rep.id) ? "#ffc700" : "#ffffff"}

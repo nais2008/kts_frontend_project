@@ -3,13 +3,12 @@ export type TCollectionMoldel<K extends string | number, T> = {
   entities: Record<K, T>
 }
 
-export const getInitialCollectionModel = (): TCollectionMoldel<
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  any,
-  any
-> => ({
+export const getInitialCollectionModel = <
+  K extends string | number,
+  T,
+>(): TCollectionMoldel<K, T> => ({
   order: [],
-  entities: {},
+  entities: {} as Record<K, T>,
 })
 
 export const normilizeCollection = <K extends string | number, T>(

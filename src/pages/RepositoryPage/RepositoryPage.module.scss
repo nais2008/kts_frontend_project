@@ -5,8 +5,8 @@
   &__container {
     @include mixins.container {
       background-color: #fff;
-      margin-top: 20px;
-      padding: 40px;
+      margin-top: variables.$spacing-20;
+      padding: variables.$spacing-40;
       display: flex;
       flex-direction: column;
       gap: 20px;
@@ -18,21 +18,11 @@
       }
     }
   }
-  &__2line {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    width: 100%;
-
-    & > * {
-      flex-basis: 49%;
-    }
-  }
   &__header {
     display: flex;
     gap: 20px;
     align-items: center;
-    margin-bottom: 20px;
+    margin-bottom: variables.$spacing-20;
   }
   &__titleLink {
     display: flex;
@@ -52,19 +42,19 @@
     display: flex;
     align-items: center;
     gap: 20px;
-    margin-bottom: 20px;
+    margin-bottom: variables.$spacing-20;
     color: #0366d6;
   }
   &__tags {
     display: flex;
     flex-wrap: wrap;
     gap: 8px;
-    margin-bottom: 16px;
+    margin-bottom: variables.$spacing-16;
 
     .tag {
       background-color: #388bfd1a;
       color: #0366d6;
-      padding: 4px 16px;
+      padding: variables.$spacing-4 variables.$spacing-16;
       border-radius: 2em;
       transition: all 0.2s;
       user-select: none;
@@ -75,71 +65,11 @@
       }
     }
   }
-  &__stats {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 8px;
-    color: variables.$secondoryColor;
-
-    p {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      transition: color 0.2s;
-
-      &:hover {
-        color: var(--hoverColor, #000);
-      }
-    }
-  }
   &__info {
     display: flex;
 
     & > div {
       flex: 1;
-    }
-  }
-  &__contributors {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 10px;
-  }
-  &__contributor {
-    display: flex;
-    gap: 8px;
-    justify-content: flex-start;
-
-    .contributor {
-      &__avatar {
-        width: 32px;
-        height: 32px;
-        border-radius: 50%;
-      }
-      &__name {
-        flex: 1;
-      }
-    }
-  }
-  &__languages {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-  }
-  &__language {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-
-    .language {
-      &__color {
-        width: 12px;
-        height: 12px;
-        border-radius: 50%;
-        background-color: var(--langColor);
-      }
     }
   }
   &__readme {

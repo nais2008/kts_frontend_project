@@ -1,12 +1,12 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { apiClient } from "api/client"
+import type { AxiosError } from "axios"
 import type { IApiResponse } from "shared/interfaces/apiResponse.interface"
 import type { IRequestOptions } from "shared/interfaces/requestOptions.interface"
 import { HTTPMethod } from "shared/types/httpMethod.type"
 import { HTTPStatus } from "shared/types/httpStatus.type"
 
 export default class ApiStore {
-  async request<SuccessT = any, ReqT = any>(
+  async request<SuccessT = unknown, ReqT = unknown>(
     params: IRequestOptions<ReqT>
   ): Promise<IApiResponse<SuccessT>> {
     try {
@@ -23,12 +23,14 @@ export default class ApiStore {
         data: response.data,
         status: response.status,
       }
-    } catch (err: any) {
+    } catch (error) {
+      const axiosError = error as AxiosError
+
       return {
         success: false,
         data: null,
-        status: err?.response?.status ?? HTTPStatus.UNEXPECTED_ERROR,
-        error: err?.message ?? "Network error",
+        status: axiosError.response?.status ?? HTTPStatus.UNEXPECTED_ERROR,
+        error: axiosError.message ?? "Network error",
       }
     }
   }

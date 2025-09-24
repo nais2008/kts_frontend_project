@@ -1,6 +1,7 @@
 import React from "react"
 
 import classNames from "classnames"
+import { ChevronLeft, ChevronRight } from "lucide-react"
 
 import Button from "../Button"
 import styles from "./Pagination.module.scss"
@@ -16,13 +17,11 @@ const Pagination: React.FC<PaginationProps> = ({
   totalPages,
   onChange,
 }) => {
-  if (totalPages <= 1) return null
-
-  const buildPages = () => {
+  const pages = React.useMemo<(number | string)[]>(() => {
     const delta = 1
-    const result = []
+    const result: (number | string)[] = []
 
-    const range = []
+    const range: number[] = []
     for (
       let i = Math.max(2, currentPage - delta);
       i <= Math.min(totalPages - 1, currentPage + delta);
@@ -31,23 +30,36 @@ const Pagination: React.FC<PaginationProps> = ({
       range.push(i)
     }
 
-    if (currentPage - delta > 2) range.unshift("...")
-    if (currentPage + delta < totalPages - 1) range.push("...")
+    if (currentPage - delta > 2) result.push("...")
+    result.push(1, ...range)
+    if (currentPage + delta < totalPages - 1) result.push("...")
+    result.push(totalPages)
 
-    result.push(1, ...range, totalPages)
     return result
-  }
+  }, [currentPage, totalPages])
 
-  const pages = buildPages()
+  const handlerPagePrev = React.useCallback(
+    () => onChange(currentPage - 1),
+    [onChange, currentPage]
+  )
+  const handlerPageNext = React.useCallback(
+    () => onChange(currentPage + 1),
+    [onChange, currentPage]
+  )
+
+  if (totalPages <= 1) return null
+
+  const buttonNextDisabled = currentPage === totalPages
+  const buttonPrevDisabled = currentPage === 1
 
   return (
     <div className={styles.pagination}>
       <Button
         className={styles.pagination__navBtn}
-        disabled={currentPage === 1}
-        onClick={() => onChange(currentPage - 1)}
+        disabled={buttonPrevDisabled}
+        onClick={handlerPagePrev}
       >
-        &lt;
+        <ChevronRight />
       </Button>
 
       {pages.map((p, idx) =>
@@ -71,10 +83,10 @@ const Pagination: React.FC<PaginationProps> = ({
 
       <Button
         className={styles.pagination__navBtn}
-        disabled={currentPage === totalPages}
-        onClick={() => onChange(currentPage + 1)}
+        disabled={buttonNextDisabled}
+        onClick={handlerPageNext}
       >
-        &gt;
+        <ChevronLeft />
       </Button>
     </div>
   )

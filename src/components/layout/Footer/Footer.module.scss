@@ -1,7 +1,8 @@
+@use "styles/variables";
 @use "styles/mixins";
 
 .footer {
-  padding-block: 20px;
+  padding-block: variables.$spacing-20;
 
   &__container {
     @include mixins.container {
