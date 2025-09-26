@@ -1,0 +1,29 @@
+@use "styles/variables";
+
+.btn {
+  background: variables.$accentColor;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: variables.$spacing-16 variables.$spacing-20;
+  font-size: 18px;
+  color: #fff;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  transition: background 0.2s;
+  border-radius: variables.$borderRadius;
+
+  @media (hover: hover) {
+    &:not(&:disabled):hover {
+      background: variables.$accentColorLight;
+    }
+  }
+  &:not(&:disabled):active {
+    background-color: variables.$accentColorDark;
+  }
+  &:disabled {
+    background: variables.$baclDisabled;
+  }
+}
