@@ -6,8 +6,8 @@
 ## Клонирование репозитория
 
 ```cmd
-git clone https://github.com/nais2008/kts_frontend_project
-cd ./kts_frontend_project/
+git clone https://github.com/nais2008/kts_frontend_project_react
+cd ./kts_frontend_project_react/
 ```
 
 ## Установка зависимостей
